@@ -1,0 +1,8 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\omnie\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\omnie\\.nuget\\packages"
+    ]
+  }
+}

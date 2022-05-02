@@ -1,0 +1,141 @@
+﻿@model Bhakti.Models.Event.EventsBooked
+@{
+    string activeInactive = "No";
+    <form id="EventsBookedModelPartialDetailsForm">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title pull-left">Book Event</h4>
+        <div class="pull-right c-red marR10 clscriteria" id="_criteria">* Required filed</div>
+    </div><!--modal-header end-->
+
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-4">
+                <input asp-for="Id" type="hidden"  class="form-control" />
+                <input asp-for="EventId" type="hidden"  class="form-control" />
+                <input asp-for="CreatedBy" type="hidden"  class="form-control" />
+                <input asp-for="UpdatedBy" type="hidden"  class="form-control" />
+                <input asp-for="ApprovedBy" type="hidden"  class="form-control" />
+                <label asp-for="EventName" class="control-label">Event Name</label>
+                <input asp-for="EventName" class="form-control" />
+                <span asp-validation-for="EventName" class="text-danger"></span>
+                   
+            </div>
+             
+
+            <div class="col-md-4">
+                <label asp-for="EventTypeId" class="control-label">Event Type</label>
+                <select class="form-control dropdown" asp-for="EventTypeId" asp-items="@(new SelectList(ViewBag.EventType, "Id", "Name",(ViewBag.EventType as IEnumerable<Bhakti.Data.EventType>).Select(y=>y.Id).FirstOrDefault()))"></select>
+                <span asp-validation-for="EventTypeId" class="text-danger"></span>
+            </div>
+                
+            <div class="col-md-4">
+                <label asp-for="NumberOfSperitualRequired" class="control-label">Person#</label>
+                <input asp-for="NumberOfSperitualRequired" class="form-control" />
+                <span asp-validation-for="NumberOfSperitualRequired" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="FromDate" class="control-label">From Date</label>
+                <input asp-for="FromDate" class="form-control" />
+                <span asp-validation-for="FromDate" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="ToDate" class="control-label">To Date</label>
+                <input asp-for="ToDate" class="form-control" />
+                <span asp-validation-for="ToDate" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="TotalCost" class="control-label">Total Cost</label>
+                <input asp-for="TotalCost" class="form-control" readonly/>
+                <span asp-validation-for="TotalCost" class="text-danger"></span>
+            </div>
+               
+            <div class="col-md-4">
+                <label asp-for="TaxCost" class="control-label">Tax Cost</label>
+                <input asp-for="TaxCost" class="form-control" readonly/>
+                <span asp-validation-for="TaxCost" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label asp-for="TravelCost" class="control-label">Travel Cost</label>
+                <input asp-for="TravelCost" class="form-control" readonly/>
+                <span asp-validation-for="TravelCost" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="OtherCost" class="control-label">Other Cost</label>
+                <input asp-for="OtherCost" class="form-control" readonly/>
+                <span asp-validation-for="OtherCost" class="text-danger"></span>
+            </div>
+                
+            <div class="col-md-4 form-check">
+                    @if (Model.IsActive)
+                    {
+                        activeInactive = "Yes";
+                    }
+                    else
+                    {
+                        activeInactive = "No";
+                    }
+                    <label asp-for="IsActive" class="control-label">Active: @activeInactive</label>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="CreatedByName" class="control-label">Created By Name</label>
+                <label class="control-label">@Model.CreatedByName</label>
+                   
+            </div>
+            <div class="col-md-4">
+                <label asp-for="CreatedDate" class="control-label">Created Date</label>
+                <label class="control-label">@Model.CreatedDate</label>
+            </div>
+                
+
+            <div class="col-md-4 form-check">
+               @if (Model.IsDeleted)
+                {
+                    activeInactive = "Yes";
+                }
+                else
+                {
+                    activeInactive = "No";
+                }
+                <label asp-for="IsDeleted" class="control-label">Deleted: @activeInactive</label>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="UpdatedByName" class="control-label">Updated By Name</label>
+                <label class="control-label">@Model.UpdatedByName</label>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="UpdatedDate" class="control-label">Updated Date</label>
+                <label class="control-label">@Model.UpdatedDate</label>
+            </div>
+            <div class="col-md-4">
+                @if (Model.IsApproved)
+                {
+                    activeInactive = "Yes";
+                }
+                else
+                {
+                    activeInactive = "No";
+                }
+                <label asp-for="IsApproved" class="control-label">Approved: @activeInactive</label>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="ApprovedByName" class="control-label">Approved By Name</label>
+                <label class="control-label">@Model.ApprovedByName</label>
+            </div>
+            <div class="col-md-4">
+                <label asp-for="ApprovedDate" class="control-label">Approved Date</label>
+                <label class="control-label">@Model.ApprovedDate</label>
+            </div>
+                
+               
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="button" value="Save" class="btn btn-primary" onclick="BookAddUpdateEvent()"/>
+    </div>
+</form>
+}

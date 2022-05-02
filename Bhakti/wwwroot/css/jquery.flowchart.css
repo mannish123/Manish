@@ -1,0 +1,243 @@
+
+.ui_update .flowchart-operator .flowchart-operator-inputs {
+    transform: translateY(-57px);
+}
+
+.ConfigActiondiv .ms-options-wrap > .ms-options {
+    max-height:175px !important;
+}
+
+.flowchart-container {
+    position: relative;
+    /*overflow: hidden;*/
+}
+
+.flowchart-links-layer, .flowchart-operators-layer, .flowchart-temporary-link-layer {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+}
+
+.flowchart-operators-layer, .flowchart-temporary-link-layer {
+    pointer-events: none;
+}
+
+.flowchart-temporary-link-layer {
+    display: none;
+}
+
+
+
+.flowchart-link, .flowchart-operator {
+    cursor: default;
+    min-height:60px;
+}
+.flowchart-link:hover {
+    cursor:grab;
+}
+
+    .flowchart-operator-connector {
+        position: relative;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
+
+.flowchart-operator-connector-label {
+    font-size: small;
+    border-top: 1px solid #043368;
+    /*margin-left: 5px;
+    margin-right: 5px;*/
+}
+
+.flowchart-operator-inputs .flowchart-operator-connector-label {
+    margin-left: 11px;
+    text-align: left !important;
+}
+
+.flowchart-operator-outputs .flowchart-operator-connector-label {
+    padding-right: 5px;
+    text-align: center !important;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+.flowchart-operator-inputs .flowchart-operator-connector-label {
+    display:none;
+    text-align:center;
+}
+.flowchart-operator-connector-arrow {
+    width: 0px;
+    height: 0px;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid rgb(204, 204, 204);
+    position: absolute;
+    top: 0px;
+}
+
+.flowchart-operator-connector-small-arrow {
+    width: 0px;
+    height: 0px;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 5px solid transparent; /*rgb(100, 100, 100);*/
+    position: absolute;
+    top: 5px;
+    pointer-events: none;
+}
+
+.flowchart-operator-connector:hover .flowchart-operator-connector-arrow {
+    border-left: 10px solid rgb(153, 153, 153);
+}
+
+.flowchart-operator-inputs .flowchart-operator-connector-arrow {
+    left: -1px;
+}
+
+.flowchart-operator-outputs .flowchart-operator-connector-arrow {
+    right: -10px;
+}
+
+.flowchart-operator-inputs .flowchart-operator-connector-small-arrow {
+    left: -1px;
+}
+
+.flowchart-operator-outputs .flowchart-operator-connector-small-arrow {
+    right: -7px;
+}
+
+.unselectable {
+   -moz-user-select: none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+}
+
+
+/* Default Operator */
+
+.flowchart-operator {
+    position: absolute;
+    width: 180px;
+    border: 1px solid #043368;
+    background: #fff;
+    pointer-events: initial;
+    border-radius: 5px 5px 3px 3px;
+}
+
+.flowchart-operator.hover {
+    border-color: #999;
+}
+
+.flowchart-operator.selected {
+    border-color: #555;
+    z-index:9;
+}
+
+
+
+    .flowchart-operator .flowchart-operator-title {
+        width: 100%;
+        padding: 5px;
+        font-weight: bold;
+        box-sizing: border-box;
+        border-bottom: 1px solid #c4ddf8;
+        background: #043368;
+        height: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        cursor: move;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+        color: #fff;
+    }
+
+    .flowchart-operator .flowchart-operator-title .pull-left {
+        margin-left: 8px;
+        margin-top: 2px;
+        line-height: normal;
+    }
+
+    .flowchart-operator .flowchart-operator-inputs-outputs {
+        display: table;
+        width: 100%;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+.flowchart-operator .flowchart-operator-inputs, .flowchart-default-operator .flowchart-operator-outputs {
+    display: table-cell;
+    /*width: 50%;*/
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 30px;
+    height: 15px;
+    margin: 0;
+}
+
+    /* Hide default HTML checkbox */
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 10px;
+    width: 10px;
+    left: 3px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #2196F3;
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+    -webkit-transform: translateX(13px);   
+    transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}

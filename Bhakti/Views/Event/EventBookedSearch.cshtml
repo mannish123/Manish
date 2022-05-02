@@ -1,0 +1,119 @@
+﻿@model Bhakti.Models.Event.EventBookedSearch
+<script src="~/js/Event/BookEvent.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/Unotrusive.Mvc.Ajax.js"></script>
+
+<div class="container">
+    <div class="header">
+        <div class="pull-left">
+            <h4 class="modal-title">Booked Event</h4>
+        </div>
+    </div><!--modal-header end-->
+    <!--modal-body start-->
+    <div class="body">
+        <div class="row">
+            <div class="col-xs-12">
+               <form id="formSearchBookedEvent">
+                    <fieldset class="search-fieldset">
+                        <div class="row">
+                            <div class="col-md-7 col-xs-10">
+                                <div class="row">
+                                    <div class="col-xs-4 form-group">
+                                        <label class="control-label">Event Name </label>
+                                        <input type="text" maxlength="50" autocomplete="off" class="form-control searchcriteria"  asp-for="EventName" />
+                                    </div>
+
+                                    <div class="col-xs-4 form-group">
+                                        <label class="control-label">From Date </label>
+                                        <input type="date" autocomplete="off" class="form-control searchcriteria" maxlength="8" asp-for="FromDate" />
+                                    </div>
+
+                                    <div class="col-xs-4 form-group">
+                                        <label class="control-label">To Date </label>
+                                        <input type="date" autocomplete="off" class="form-control searchcriteria" maxlength="8" asp-for="ToDate" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-xs-2 padT20 widthAuto">
+
+                              <button type="button" class="icon btn-search" onclick="SearchBookedEvent()" >Search</button>
+                                <button type="reset" class="icon btn-clear" >Clear</button>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div class="col-xs-12 clsTableSearchResultDiv" id="_PartialSearchResult">
+                <div class="row">
+                    <div class="col-xs-12 marB10">
+                        <div class="pull-left disableDiv"></div>
+                    </div>
+                    <div class="col-xs-12">
+                        <fieldset class="fieldset grid marB0">
+                            <div class="table-fixed-header">
+                                <div id="divSearchData">
+                                    <table class="table table-hover table-striped singleSelect" cellspacing="0" cellpadding="0" style="width:100%;">
+                                        <thead>
+                                            <tr>
+                                                <th width="15%">
+                                                    <span>EventName</span>
+                                                    <div class="th"><a class="sortingIco" href="javascript:void(0)">Event Name</a></div>
+                                                </th>
+                                                <th width="15%">
+                                                    <span>EventTypeName</span>
+                                                    <div class="th"><a class="sortingIco" href="javascript:void(0)">Event Type</a></div>
+                                                </th>
+                                                <th style="width:10%">
+                                                    <span>PersonNo</span>
+                                                    <div class="th"><a class="sortingIco" href="javascript:void(0)">Person#</a></div>
+                                                </th>
+                                                <th width="15%">
+                                                    <span>FromDate</span>
+                                                    <div class="th"><a class="sortingIco" href="javascript:void(0)">From Date</a></div>
+                                                </th>
+                                                <th width="15%">
+                                                    <span>ToDate</span>
+                                                    <div class="th"><a class="sortingIco" href="javascript:void(0)">To Date</a></div>
+                                                </th>
+                                                <th width="10%">
+                                                    <span>TotalCost</span>
+                                                    <div class="th"><a class="sortingIco" href="javascript:void(0)">Total Cost</a></div>
+                                                </th>
+                                                <th width="20%">
+                                                    <span>&nbsp;</span>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="pull-right">
+            <button type="button" class="btn btn-primary modelDemoBtn" onclick="BookNewEvent(0)">Book New Event</button>
+            @*<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>*@
+        </div>
+    </div>
+
+
+<!-- **BookNewEvent Modal start************************** -->
+    <div class="modal fade" id="BookNewEventModel" role="dialog" data-backdrop="static" data-keyboard="true" tabindex="-1">
+        <div class="modal-dialog lg">
+            <div class="modal-dialog md">
+                <!-- Modal content-->
+                <div class="modal-content" id="_BookNewEventModelContent">
+
+                </div>
+            </div>
+        </div>
+        <!--modal-dialog end-->
+    </div>
+<!-- **BookNewEvent Modal start End************************** -->
+
+</div>
+
+

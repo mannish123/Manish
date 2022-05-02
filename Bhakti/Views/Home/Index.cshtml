@@ -1,0 +1,17 @@
+﻿@{  
+    ViewData["Title"] = "Home Page";  
+}  
+<div class="container">  
+    <div class="row">  
+        
+       <div class="col-md-12">  
+            <div class="form-check">  
+                    <a asp-action="Login" asp-controller="Account">Login</a> 
+                </div>  
+            <div class="form-check">  
+                <a asp-action="RegisterUser" asp-controller="Account">Register as User</a> | 
+                <a asp-action="RegisterAgency" asp-controller="Account">Register as Agency</a>                  
+            </div>  
+        </div>
+    </div>  
+</div>  

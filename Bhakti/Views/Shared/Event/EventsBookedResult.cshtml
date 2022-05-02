@@ -1,0 +1,135 @@
+﻿@model IEnumerable<Bhakti.Models.Event.EventsBooked>
+@using Bhakti.Data
+@using Bhakti.Helper
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    //Get object from session
+    //var userSessionObject = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<User>("User");
+    //string userRoleName = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("UserRoleName");
+
+    var records = "";
+    int totalRecord = 0;
+    var recordsclass = "";
+    @if (Model != null && Model.Count() > 0)
+    {
+        totalRecord = Model.First().TotalRecords;
+        records = "Total Record(s): " + totalRecord;
+        recordsclass = "font-bold";
+
+        <div class="row">
+            <div class="col-xs-12 marB10">
+                <div class="pull-left recordInfo @recordsclass" id="_noofrecords">@records</div>
+                <div class="pull-right recordInfo" id="recordbypage"></div>
+            </div>
+
+            <div class="col-xs-12">
+                <fieldset class="fieldset grid marB0">
+                    <div class="table-fixed-header">
+                        <div  class="scrollDiv" id="ThirdPartySearchDiv">
+                            <table class="table table-hover table-striped singleSelect" cellpadding="0" cellspacing="0" style="width:100%" id="tblSearchThirdPartyResultSelect">
+                                <thead>
+                                    <tr>
+                                        <th style="width:15%">
+                                            @{
+                                                string _eventNameSortingClass = "sortingIco";
+                                                string _personNoClass = "sortingIco";
+
+                                                var sortBy = ViewBag.sortBy;
+                                                if (sortBy == "_eventNameSortingClass")
+                                                {
+                                                    _eventNameSortingClass = ViewBag.sortingClass == null ? "sortingIco ace" : @ViewBag.sortingClass;
+
+                                                }
+                                                else if (_personNoClass == "PersonNo")
+                                                {
+                                                    _personNoClass = ViewBag.sortingClass == null ? "sortingIco ace" : @ViewBag.sortingClass;
+                                                }
+
+                                            }
+
+                                            <span>EventName</span>
+                                            <div class="th"><a class="@_eventNameSortingClass" href="javascript:void(0)" >Event Name</a></div>
+
+                                        </th>
+                                        <th width="15%">
+                                            <span>Name</span>
+                                            <div class="th"><a class="@_personNoClass" href="javascript:void(0)">Event Type</a></div>
+                                        </th>
+                                        <th width="10%">
+                                            <span>PersonNo</span>
+                                            <div class="th"><a class="@_personNoClass" href="javascript:void(0)">Person#</a></div>
+                                        </th>
+                                        <th width="15%">
+                                            <span>FromDate</span>
+                                            <div class="th"><a href="javascript:void(0)" >From Date</a></div>
+                                        </th>
+
+                                        <th width="15%">
+                                            <span>ToDate</span>
+                                            <div class="th"><a href="javascript:void(0)" >To Date</a></div>
+                                        </th>
+
+                                        <th width="10%">
+                                            <span>TotalCost</span>
+                                            <div class="th"><a href="javascript:void(0)" >Total Cost</a></div>
+                                        </th>
+
+                                        <th width="20%">
+                                            <span>&nbsp;</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @if (Model.Count() > 0)
+                                    {
+                                        @foreach (var data in Model)
+                                        {
+                                            <tr>
+                                                <td >@data.EventName</td>
+                                                <td >@data.EventTypeName</td>
+                                                <td >@data.NumberOfSperitualRequired</td>
+                                                <td >@data.FromDate</td>
+                                                <td >@data.ToDate</td>
+                                                <td >@data.TotalCost</td>
+                                                <td >
+                                                    <input type="hidden" id="Id" name="Id" value="@data.Id" /><i></i>
+                                                    @if (@data.IsActive)
+                                                    {
+                                                        <span class="active" title="Active">Active</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="inactive" title="InActive">InActive</span>
+                                                    }
+                                                    @if (!@data.IsApproved) {
+                                                        <a href = "#" class="link" onclick="BookNewEvent(@data.Id)">Edit</a>  
+                                                        //if(userRoleName=="Admin"){
+                                                        //    <a href = "#" class="link" onclick="ApproveBookedEvent(@data.Id)">Approve</a> 
+                                                        //}
+                                                        <a href = "#" class="link" onclick="DeleteBookedEvent(@data.Id)">Delete</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href = "#" class="link" onclick="BookNewEvent(@data.Id)">View</a>  
+                                                    }
+                                                </td>
+                                                
+                                            </tr>
+                                        }
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        }
+        else
+        {
+            //records = Messages.AppSetting["DataInfo"];
+            recordsclass = "c-red";
+        }
+      
+    }
