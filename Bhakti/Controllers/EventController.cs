@@ -12,7 +12,7 @@ namespace Bhakti.Controllers
     public class EventController : Controller
     {
 
-        private int UserId = 1;
+        private int UserId = 1;//read userid from sessions
         public IActionResult SearchBookedEvent(EventBookedSearch eventBookedSearch)
         {
             List<EventsBooked> eventsBooked = new List<EventsBooked>();
