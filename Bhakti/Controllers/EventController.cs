@@ -12,7 +12,8 @@ namespace Bhakti.Controllers
     public class EventController : Controller
     {
 
-        private int UserId = 1;//read userid from sessions
+        private int UserId = 1;// HttpContext.Session.TryGetValue("UserId");//read userid from sessions
+        [HttpPost]
         public IActionResult SearchBookedEvent(EventBookedSearch eventBookedSearch)
         {
             List<EventsBooked> eventsBooked = new List<EventsBooked>();
@@ -55,7 +56,7 @@ namespace Bhakti.Controllers
                                 )
                                 
                                 //.Where(fullEntry => fullEntry.CreatedBy == UserId)
-                                .Take(10);
+                                .Take(Convert.ToInt32(eventBookedSearch.PageSize));
 
 
                 foreach (var item in eventBooked)
