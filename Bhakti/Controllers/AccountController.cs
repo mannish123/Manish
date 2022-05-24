@@ -166,6 +166,7 @@ namespace Bhakti.Controllers
             HttpContext.Session.SetObjectAsJson("User", user);
             HttpContext.Session.SetInt32("UserId", user.Id);
             HttpContext.Session.SetString("UserRoleName", userRoleName);
+            HttpContext.Session.SetString("UserName", user.UserName);
 
 
         }
