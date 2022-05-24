@@ -1,12 +1,11 @@
-﻿using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+﻿using Bhakti.Helper;
 using Bhakti.Models.Account;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using Bhakti.Helper;
-using Bhakti.Data;
-using System;
+using System.Security.Claims;
 
 namespace Bhakti.Controllers
 {
@@ -165,7 +164,8 @@ namespace Bhakti.Controllers
             //};
 
             HttpContext.Session.SetObjectAsJson("User", user);
-            HttpContext.Session.SetObjectAsJson("UserRoleName", userRoleName);
+            HttpContext.Session.SetInt32("UserId", user.Id);
+            HttpContext.Session.SetString("UserRoleName", userRoleName);
 
 
         }

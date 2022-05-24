@@ -4,6 +4,7 @@
 });
 
 function SearchBookedEvent() {
+    $('#PageSize').val(100);
     var formData = $('#formSearchBookedEvent').serialize();
     $.ajax({
         type: "POST",
@@ -14,7 +15,8 @@ function SearchBookedEvent() {
             $("#_PartialSearchResult").html(data);
             
         },
-        error: function () {
+        error: function (response) {
+            alert(JSON.stringify(response))
             alert("failed to load data")
         }
     });

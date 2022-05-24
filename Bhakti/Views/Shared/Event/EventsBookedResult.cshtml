@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Bhakti.Models.Event.EventsBooked>
+﻿@model List<Bhakti.Models.Event.EventsBooked>
 @using Bhakti.Data
 @using Bhakti.Helper
 @using Microsoft.AspNetCore.Http
@@ -6,7 +6,7 @@
 @{
     //Get object from session
     //var userSessionObject = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<User>("User");
-    //string userRoleName = HttpContextAccessor.HttpContext.Session.GetObjectFromJson<string>("UserRoleName");
+    string userRoleName = HttpContextAccessor.HttpContext.Session.GetString("UserRoleName");
 
     var records = "";
     int totalRecord = 0;
@@ -104,9 +104,9 @@
                                                     }
                                                     @if (!@data.IsApproved) {
                                                         <a href = "#" class="link" onclick="BookNewEvent(@data.Id)">Edit</a>  
-                                                        //if(userRoleName=="Admin"){
-                                                        //    <a href = "#" class="link" onclick="ApproveBookedEvent(@data.Id)">Approve</a> 
-                                                        //}
+                                                        if(userRoleName=="Admin"){
+                                                            <a href = "#" class="link" onclick="ApproveBookedEvent(@data.Id)">Approve</a> 
+                                                        }
                                                         <a href = "#" class="link" onclick="DeleteBookedEvent(@data.Id)">Delete</a>
                                                     }
                                                     else
